@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+
+    title Register form one 
+  body
+    .container#signUp
+      .drop
+        .content
+          h2 Sign Up
+          form(method="post"  action="/signUp")
+            .inputBox 
+              input(type='text' name="username" required placeholder='Add Username')
+            .inputBox
+              input(type='password' name="password" required placeholder='Creat Password')
+            .inputBox
+                input(type="password" required placeholder="Confirm Password" )
+            .inputBox
+              input#box(type='submit' value="sign Up" )
+      a.btns(href='#' )
+        | Forget 
+        br
+        |  Password
+      a.btns.Sign(href='/') SignIn

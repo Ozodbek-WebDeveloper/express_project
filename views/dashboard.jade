@@ -1,0 +1,91 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Dashboard Design
+    link(rel='stylesheet', href='/stylesheets/dashboard.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css')
+  body 
+
+    include  modal
+
+
+    .sidebar
+      .logo
+      ul.menu
+        li.active
+          a(href='#')
+            i.fas.fa-tachometer-alt
+        li
+          a(href='#')
+            i.fas.fa-user
+            span Profile
+        li
+          a(href='#')
+            i.fas.fa-chart-bar
+            span Statistics
+        li
+          a(href='#')
+            i.fas.fa-briefcase
+            span Careers
+        li
+          a(href='#')
+            i.fas.fa-question-circle
+            span FAQ
+        li
+          a(href='#')
+            i.fas.fa-star
+            span Testimonials
+        li
+          a(href='#')
+            i.fas.fa-cog
+            span Settings
+        li.logout
+          a(href='#')
+            i.fas.fa-sign-out-alt
+            span Logout
+    .main--content
+      .header--wrapper
+        .header--title
+          span Primary
+          h2 Dashboard
+        .user--info
+          .search--box
+            i.fa-solid.fa-search
+            input(type='text', placeholder='Search')
+        img(src='https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg', alt='Image by benzoik on Freepik')
+      .tabular--wrapper
+        h3.main--title Finance data
+        .table--container
+          table
+            thead
+              tr
+                th id
+                th username
+                th password
+                th data
+                th Edit
+                th delete
+            tbody
+              each user, idx in users
+                tr 
+                  td= user.id 
+                  td= user.login 
+                  td= user.password
+                  td= dates[idx]
+                  td
+                    button.button-86.edit(type='submit'  data-user=user ) Edit
+                  td
+                    form(method="post"  action="dashboard") 
+                      input(type="hidden" name="userId" value=user.id)
+                      button.button-86.delete(type='submit') Delete
+              tfoot
+                tr
+                  td(colspan='7') Total: &pound;1,000
+
+      
+
+script(src="/javascripts/dashboard.js") 
+
+//"
