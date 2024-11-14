@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 // mysql connection (pool)
 const db = mysql.createPool({
   connectionLimit: 10,
   host: 'localhost',
   user: 'root',
-  password: '245781',
-  database: 'project'
+  password: 'root/kali',
+  database: 'vue_one'
 });
 
 /* GET signIn page. */
@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
   var username = req.body["username"];
   var password = req.body["password"];
 
-  const query = 'SELECT * FROM users WHERE login = ?';
+  const query = 'SELECT * FROM data WHERE login = ?';
   db.query(query, [username], (err, results) => {
       if (err) {
           console.error('Xatolik:', err);

@@ -1,26 +1,26 @@
 var express = require('express');
 var router = express.Router();
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 // mysql connection pool
 const db = mysql.createPool({
   connectionLimit: 10,
-  host: 'localhost',
+  host: 'localhost', //
   user: 'root',
-  password: '245781',
-  database: 'project'
+  password: 'root/kali',
+  database: 'vue_one'
 });
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  const query = 'SELECT * FROM users';
+  const query = 'SELECT * FROM data';
   db.query(query, (err, results) => {
     if (err) {
       console.error('Xatolik:', err);
       res.status(500).send("Server xatoligi");
     } else {
       var dates = results.map(row => {
-        return new Date(row.created_data).toISOString().split('T')[0]; // YYYY-MM-DD formatida
+        return new Date(row.created).toISOString().split('T')[0]; 
       });
       res.render('dashboard', { users: results, dates });
     }
@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
   var id = req.body.userId;
   console.log(id);
 
-  const query = 'DELETE FROM users WHERE id = ?';
+  const query = 'DELETE FROM data WHERE id = ?';
 
   db.query(query, [id], (err, results) => {
     if (err) {
@@ -49,7 +49,7 @@ router.put("/", (req, res) => {
   const password = req.body.password;
   const id = req.body.id;
 
-  const query = 'UPDATE users SET login = ?, password = ? WHERE id = ?';
+  const query = 'UPDATE data SET login = ?, password = ? WHERE id = ?';
   db.query(query, [login, password, id], (err, result) => {
     if (err) {
       return res.status(500).json({ error: 'Error updating user' });
